@@ -29,7 +29,7 @@ public class BasicNavigation {
 
 
          driver.close();// to close browser
-        //browser can not close it self
+        //browser can not close it self.
 
     }
 }
