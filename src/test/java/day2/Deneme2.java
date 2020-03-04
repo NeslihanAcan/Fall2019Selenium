@@ -26,11 +26,11 @@ public class Deneme2 {
         WebElement Login=driver.findElement(By.id("u_0_b"));
 
 
-         email.sendKeys("neslihan3018@hotmail.com");
+         email.sendKeys("neslihan@hotmail.com");
 
         Thread.sleep(3000);
 
-        passWord.sendKeys("301sekiZ");
+        passWord.sendKeys("abcd");
 
          Login.submit();
 
