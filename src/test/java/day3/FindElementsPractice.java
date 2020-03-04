@@ -22,10 +22,6 @@ public class FindElementsPractice {
 WebDriverManager.chromedriver().setup();
 WebDriver driver = new ChromeDriver();
  */
-       //   WebDriverManager.chromedriver().setup();
-      //  WebDriver driver=new ChromeDriver();
-        //        WebDriverManager.chromedriver().setup();
-//        WebDriver driver = new ChromeDriver();
 
         WebDriver driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/sign_up");

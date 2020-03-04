@@ -17,8 +17,8 @@ public class IgLogIn {
 
         driver.get("https://www.instagram.com/");
 
-        WebElement faceBookLogIn=driver.findElement(By.partialLinkText("Log in"));
-        faceBookLogIn.submit();
+        WebElement logIn=driver.findElement(By.partialLinkText("Log in"));
+        logIn.click();
 
 
     }
