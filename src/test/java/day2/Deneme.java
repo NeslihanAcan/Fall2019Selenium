@@ -15,7 +15,7 @@ public class Deneme {
         Thread.sleep(2000);
         WebElement search = driver.findElement(By.name("q"));
         Thread.sleep(2000);
-        search.sendKeys("J");
+        search.sendKeys("j");
         Thread.sleep(2000);
         search.sendKeys("a");
         Thread.sleep(2000);
