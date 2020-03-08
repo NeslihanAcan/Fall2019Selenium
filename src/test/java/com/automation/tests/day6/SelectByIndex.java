@@ -14,7 +14,7 @@ public class SelectByIndex {
         BrowserUtils.wait(3);
         Select stateSelect=new Select(driver.findElement(By.id("state")));
 
-        stateSelect.selectByIndex(100);
+        stateSelect.selectByIndex(3);
 
         stateSelect.selectByIndex(stateSelect.getOptions().size()-1);
 
