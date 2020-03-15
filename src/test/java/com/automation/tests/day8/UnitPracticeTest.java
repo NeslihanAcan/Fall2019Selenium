@@ -17,7 +17,7 @@ public class UnitPracticeTest {
 
     }
     //annotation
-    @Test(description = "Verify if method cane reverse a string")
+    @Test(description = "Verify if method can reverse a string")
     public void test(){
 
         String expected= "elppa";
