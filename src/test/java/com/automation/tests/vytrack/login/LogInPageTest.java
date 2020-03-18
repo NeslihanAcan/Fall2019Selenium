@@ -14,29 +14,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class LogInPageTest {
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
 
-    public void setURL(String URL) {
-        this.URL = URL;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUsernameBy(By usernameBy) {
-        this.usernameBy = usernameBy;
-    }
-
-    public void setPasswordBy(By passwordBy) {
-        this.passwordBy = passwordBy;
-    }
 
     private WebDriver driver;
     private String URL="https://qa2.vytrack.com/user/login";
@@ -60,7 +38,7 @@ public class LogInPageTest {
         String actual=warningElement.getText();
         assertEquals(actual,expected);
     }
-    @Test(description = "Loin as store manager and verify that title is equals to Dashboard")
+    @Test(description = "Login as store manager and verify that title is equals to Dashboard")
     public void loginAsStoreManager(){
         driver.findElement(usernameBy).sendKeys(userName);
         driver.findElement(passwordBy).sendKeys(password,Keys.ENTER);
