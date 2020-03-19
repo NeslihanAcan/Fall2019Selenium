@@ -20,7 +20,7 @@ public class March4 {
     /**
      * Go to ebay --->          driver.get("http://ebay.com");
      * enter search term        input.sendKeys("java book");
-     * click on search button   searchButton.click();
+     * click on search button   searchButton.click();//
      * print number of results
      */
     public static void ebayTest() throws Exception {
