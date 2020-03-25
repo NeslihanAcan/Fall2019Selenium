@@ -32,8 +32,6 @@ Step 13. Verify that subject is: “Thanks for subscribing to practice.cyberteks
     private By fullNameBy=By.name("full_name");
     private By messageBy=By.xpath("//h3[text()='Thank you for signing up. Click the button below to return to the home page.']");
     private String mailUrl="https://www.tempmailaddress.com/";
-    private By doNotReply=By.xpath("//tbody[@id='schranka']/tr[1]/td[1]");
-
 
     @Test
     public void TestCase_6(){
@@ -44,26 +42,48 @@ Step 13. Verify that subject is: “Thanks for subscribing to practice.cyberteks
         driver.get(mailUrl);
         String getEmail= driver.findElement(emailBy).getText();
         BrowserUtils.wait(2);
+
        driver.navigate().to("https://practice-cybertekschool.herokuapp.com/");
+
        driver.findElement(By.cssSelector("[href='/sign_up']")).click();
         BrowserUtils.wait(2);
+
        driver.findElement(fullNameBy).sendKeys("Neslihan Acan");
+
        driver.findElement(By.name("email")).sendKeys(getEmail);
+
        driver.findElement(By.cssSelector("button[type='submit']")).click();
         BrowserUtils.wait(2);
+
        WebElement message =driver.findElement(messageBy);
        Assert.assertTrue(message.isDisplayed());
+       BrowserUtils.wait(3);
+
        driver.findElement(By.id("wooden_spoon")).click();
 
-        driver.navigate().to(mailUrl);
+        driver.navigate().back();
+        driver.navigate().back();
+        driver.navigate().back();
+        driver.navigate().back();
+        BrowserUtils.wait(3);
 
+       String actual= driver.findElement(By.xpath("//tbody[@id='schranka']/tr[1]/td[1]")).getText().trim();
+       String expected="do-not-reply@practice.cybertekschool.com";
+       Assert.assertEquals(actual,expected);
+        BrowserUtils.wait(3);
 
+        driver.findElement(By.className("from")).click();
 
+      String actual2= driver.findElement(By.id("odesilatel")).getText();
+      String expected2="do-not-reply@practice.cybertekschool.com";
+      Assert.assertEquals(actual2,expected2);
+      BrowserUtils.wait(3);
 
+        String actual3=driver.findElement(By.id("predmet")).getText();
+       String expected3="Thanks for subscribing to practice.cybertekschool.com!";
+        Assert.assertEquals(actual3,expected3);
 
-
-
-     //  driver.quit();
+      driver.quit();
 
 
 
