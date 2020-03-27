@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TestCases_9_12 {
+public class TestCases9_12 {
 
     private WebDriver driver;
     private By statusCodesBy=By.cssSelector("[href='/status_codes']");

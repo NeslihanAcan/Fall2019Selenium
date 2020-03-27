@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class TestCases_1_5 {
+public class TestCase1_5 {
 
     private WebDriver driver;
     private By registrationForm = By.linkText("Registration Form");
