@@ -1,6 +1,5 @@
 package com.automation.tests.vytrack.fleet;
 
-import com.automation.tests.vytrack.login.LogInPageTest;
 import com.automation.utilities.BrowserUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
