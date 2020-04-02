@@ -2,33 +2,44 @@ package com.automation.tests.vytrack.login;
 
 import com.automation.pages.LoginPage;
 import com.automation.tests.vytrack.AbstractTestBase;
+import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.Driver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NewLoginTests extends AbstractTestBase {
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
-    /**
-     * Login and verify that page title is a "Dashboard"
-     */
+public class NewLoginTests extends AbstractTestBase {
 
     @Test
     public void verifyPageTitle(){
-        LoginPage loginPage=new LoginPage();
+        //test --> ExtentTest object
+        //we must add to every test at the beginning
+        //test = report.createTest("Test name");
+        test = report.createTest("Verify page title");
+        LoginPage loginPage = new LoginPage();
         loginPage.login();
-        String expected="Dashboard";
-        String actual= Driver.getDriver().getTitle();
-
-        Assert.assertEquals(actual,expected);
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
+        //if assertion passed, it will set test status in report to passed
+        test.pass("Page title Dashboard was verified");
     }
-    /*
-     Enter wrong credentials and verify warning message!
-   */
+
+    /**
+     * Enter wrong credentials and verify warning message
+     *
+     */
+
     @Test
-    public void verifyWarningmessage(){
-        LoginPage loginPage=new LoginPage();
-        loginPage.login("wrong","wrong");
-        Assert.assertEquals(loginPage.getWarningMessageText(),"Invalid user name or password.");
+    public void verifyWarningMessage(){
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("wrong", "wrong");
+        Assert.assertEquals(loginPage.getWarningMessageText(), "Invalid user name or password.");
+        //take a screenshot
+        BrowserUtils.getScreenshot("warning_message");
     }
-
 }
