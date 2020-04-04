@@ -15,7 +15,6 @@ import java.util.List;
 
 public class NewCalendarEventsTests extends AbstractTestBase {
 
-
     LoginPage loginPage = new LoginPage();
     CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
@@ -28,6 +27,11 @@ public class NewCalendarEventsTests extends AbstractTestBase {
      **/
     @Test
     public void defaultOptionsTest() {
+        test = report.createTest("Verify default login options");
+
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
@@ -35,9 +39,11 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         Assert.assertEquals(calendarEventsPage.getOwnerName(), calendarEventsPage.getCurrentUserName());
 
         String actualStartDate = calendarEventsPage.getStartDate();
-        String expectedStartDate = DateTimeUtilities.getCurrentDate("MMM dd, yyyy");
+        String expectedStartDate = DateTimeUtilities.getCurrentDate("MMM d, yyyy");
 
         Assert.assertEquals(actualStartDate, expectedStartDate);
+
+        test.pass("Default options verified");
 
     }
 
@@ -52,6 +58,11 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test
     public void timeDifferenceTest() {
+        test = report.createTest("Verify time difference");
+
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         loginPage.login();
 
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
@@ -65,6 +76,8 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         long actual = DateTimeUtilities.getTimeDifference(startTime, endTime, format);
 
         Assert.assertEquals(actual, 1, "Time difference is not correct");
+
+        test.pass("Time difference verified");
 
     }
 
@@ -84,13 +97,22 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test
     public void verifyColumnNamesTest() {
+        test = report.createTest("Verify column names");
+
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
 
         List<String> expected = Arrays.asList("TITLE", "CALENDAR", "START", "END", "RECURRENT", "RECURRENCE", "INVITATION STATUS");
 
         Assert.assertEquals(calendarEventsPage.getColumnNames(), expected);
+        test.pass("Column names verified");
+
     }
+
+//    public Object[] eve
 
     @Test(dataProvider = "calendarEvents")
     public void createCalendarEventTest(String title, String description) {
@@ -100,17 +122,20 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         //just create page objects inside a test
         LoginPage loginPage = new LoginPage();
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         //only for extent report. To create a test in html report
-        test = report.createTest("Create calendar event for "+title);
+        test = report.createTest("Create calendar event for " + title);
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
         calendarEventsPage.enterCalendarEventTitle(title);
         calendarEventsPage.enterCalendarEventDescription(description);
         calendarEventsPage.clickOnSaveAndClose();
+
         //verify that calendar event info is correct
         Assert.assertEquals(calendarEventsPage.getGeneralInfoDescriptionText(), description);
         Assert.assertEquals(calendarEventsPage.getGeneralInfoTitleText(), title);
+
         //for extent report. specify that test passed in report (if all assertions passed)
         test.pass("Calendar event was created successfully!");
     }

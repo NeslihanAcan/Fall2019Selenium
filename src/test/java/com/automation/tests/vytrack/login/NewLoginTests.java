@@ -19,7 +19,7 @@ public class NewLoginTests extends AbstractTestBase {
 
 
 
-    @Test
+    @Test(groups = "smoke")
     public void verifyPageTitle() {
         //test --> ExtentTest object
         //we must add to every test at the beginning
