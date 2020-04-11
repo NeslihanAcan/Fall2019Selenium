@@ -19,7 +19,6 @@ public abstract class AbstractTestBase {
     //will be visible in the subclass, regardless on subclass location (same package or no)
     protected WebDriverWait wait;
     protected Actions actions;
-
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest test;
@@ -30,7 +29,7 @@ public abstract class AbstractTestBase {
     @Parameters("reportName")
     public void setupTest(@Optional String reportName) {
         System.out.println("Report name: " + reportName);
-        reportName= reportName == null ? "report.html" : reportName;
+        reportName= reportName == null ? "report.html" : reportName+".html";
 
         report = new ExtentReports();
 
@@ -55,7 +54,7 @@ public abstract class AbstractTestBase {
 
     @BeforeMethod
     public void setup() {
-        String URL = ConfigurationReader.getProperty("qa3");
+        String URL = ConfigurationReader.getProperty("qa2");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().window().maximize();
         wait = new WebDriverWait(Driver.getDriver(), 25);
