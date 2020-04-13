@@ -23,7 +23,7 @@ public abstract class  AbstractPageBase {
     }
 
 
-    public String getCurrentUserName(){
+    public String getCurrentUserName() {
         BrowserUtils.waitForPageToLoad(10);
         wait.until(ExpectedConditions.visibilityOf(currentUser));
         return currentUser.getText().trim();
@@ -32,11 +32,12 @@ public abstract class  AbstractPageBase {
 
     /**
      * Method for vytrack navigation. Provide tab name and module name to navigate
-     * @param tabName, like Dashboards, Fleet or Customers
+     *
+     * @param tabName,    like Dashboards, Fleet or Customers
      * @param moduleName, like Vehicles, Vehicles Odometer and Vehicles Costs
      */
     public void navigateTo(String tabName, String moduleName) {
-        String tabNameXpath = "//span[@class='title title-level-1' and contains(text(),'" + tabName + "')]";
+        String tabNameXpath = "//span[@class='feed-add-post-form-link' and contains(text(),'" + tabName + "')]";
         String moduleXpath = "//span[@class='title title-level-2' and text()='" + moduleName + "']";
 
         WebElement tabElement = driver.findElement(By.xpath(tabNameXpath));

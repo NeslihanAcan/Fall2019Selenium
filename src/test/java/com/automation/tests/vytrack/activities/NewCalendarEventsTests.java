@@ -33,7 +33,7 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
         loginPage.login();
-        calendarEventsPage.navigateTo("Activities", "Calendar Events");
+        //calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
 
         Assert.assertEquals(calendarEventsPage.getOwnerName(), calendarEventsPage.getCurrentUserName());
@@ -65,7 +65,7 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
         loginPage.login();
 
-        calendarEventsPage.navigateTo("Activities", "Calendar Events");
+       calendarEventsPage.navigateTo("Activities", "Calendar Events");
 
         calendarEventsPage.clickToCreateCalendarEvent();
 
@@ -103,7 +103,7 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
         loginPage.login();
-        calendarEventsPage.navigateTo("Activities", "Calendar Events");
+       calendarEventsPage.navigateTo("Activities", "Calendar Events");
 
         List<String> expected = Arrays.asList("TITLE", "CALENDAR", "START", "END", "RECURRENT", "RECURRENCE", "INVITATION STATUS");
 
