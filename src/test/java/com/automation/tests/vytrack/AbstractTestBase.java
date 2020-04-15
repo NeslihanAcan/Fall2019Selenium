@@ -3,6 +3,7 @@ package com.automation.tests.vytrack;
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
+import com.automation.utilities.ExcelUtil;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -19,9 +20,13 @@ public abstract class AbstractTestBase {
     //will be visible in the subclass, regardless on subclass location (same package or no)
     protected WebDriverWait wait;
     protected Actions actions;
+
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest test;
+
+    protected static int row = 1;
+    protected ExcelUtil excelUtil;
 
     //@Optional - to make parameter optional
     //if you don't specify it, testng will require to specify this parameter for every test, in xml runner
@@ -29,16 +34,16 @@ public abstract class AbstractTestBase {
     @Parameters("reportName")
     public void setupTest(@Optional String reportName) {
         System.out.println("Report name: " + reportName);
-        reportName= reportName == null ? "report.html" : reportName+".html";
+        reportName = reportName == null ? "report.html" : reportName + ".html";
 
         report = new ExtentReports();
 
         String reportPath = "";
         //location of report file
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            reportPath = System.getProperty("user.dir") + "\\test-output\\report.html";
+            reportPath = System.getProperty("user.dir") + "\\test-output\\" + reportName;
         } else {
-            reportPath = System.getProperty("user.dir") + "/test-output/report.html";
+            reportPath = System.getProperty("user.dir") + "/test-output/" + reportName;
         }
         //is a HTML report itself
         htmlReporter = new ExtentHtmlReporter(reportPath);
@@ -54,7 +59,7 @@ public abstract class AbstractTestBase {
 
     @BeforeMethod
     public void setup() {
-        String URL = ConfigurationReader.getProperty("qa2");
+        String URL = ConfigurationReader.getProperty("qa3");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().window().maximize();
         wait = new WebDriverWait(Driver.getDriver(), 25);
@@ -74,6 +79,11 @@ public abstract class AbstractTestBase {
             BrowserUtils.wait(2);
             test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
             test.fail(iTestResult.getThrowable());//attach console output
+            //if excelUtil object was created
+            //set value if result column to failed
+            if (excelUtil != null) {
+                excelUtil.setCellData("FAILED", "result", row++);
+            }
         }
         BrowserUtils.wait(2);
         Driver.closeDriver();
